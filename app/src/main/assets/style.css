@@ -1,0 +1,446 @@
+:root {
+    --primary: #0c56cd;
+    --bg: #ebeef6;
+    --surface: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #757575;
+    --success: #4CAF50;
+    --danger: #F44336;
+    --warning: #FF9800;
+    --nav-height: 65px;
+    --header-height: 65px;
+}
+
+/* Essential Mobile Reset */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+}
+
+input, select, textarea {
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-primary);
+    height: 100vh; /* Fallback */
+    height: 100dvh;
+    overflow: hidden;
+    position: fixed; /* Prevents bounce scroll on iOS */
+    width: 100%;
+}
+
+/* Fixed App Bar */
+header {
+    height: var(--header-height);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    padding-top: env(safe-area-inset-top);
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 22px;
+    margin: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.back-btn {
+    margin-right: 12px; color: var(--primary); cursor: pointer; font-size: 28px;
+}
+
+/* Main Scrollable Content Area */
+main {
+    position: absolute;
+    top: var(--header-height);
+    bottom: 0;
+    left: 0; right: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--surface);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.03);
+    z-index: 10;
+}
+
+.fragment {
+    padding: 13px;
+    padding-bottom: 100px;
+    min-height: 100%;
+}
+
+/* Apple-style Floating Dock */
+nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 400px;
+    height: 65px;
+    background: #ffffff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border: 1.5px solid #f0f0f0;
+    z-index: 1000;
+}
+
+.nav-liquid-container {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Icons proper z-index pe rahein aur active icon primary blue dikhe */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #8E8E93;
+    text-decoration: none;
+    width: 33.33%;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    padding: 10px 0;
+}
+.nav-item.active, .nav-item.active .material-icons {
+    color: var(--primary) !important;
+    fill: var(--primary) !important;
+}
+
+#navIndicator {
+    position: absolute;
+    height: 50px;
+    background: rgba(12, 86, 205, 0.1);
+    border: 1px solid rgba(12, 86, 205, 0.2);
+    box-shadow: inset 0px 3px 5px rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+#navIndicator, .nav-bubble {
+    position: absolute;
+    background: rgba(12, 86, 205, 0.15); /* Light transparent water color */
+    backdrop-filter: blur(12px); /* Glass Blur Effect */
+    -webkit-backdrop-filter: blur(12px); /* For Apple Devices */
+    border: 1.5px solid rgba(255, 255, 255, 0.9); /* Shiny White Glass Edge */
+    box-shadow: inset 0px 4px 6px rgba(255, 255, 255, 0.8), /* Inner Shine */
+                inset 0px -2px 4px rgba(12, 86, 205, 0.1),  /* Inner Depth */
+                0px 6px 12px rgba(0, 0, 0, 0.05);           /* Soft Drop Shadow */
+    border-radius: 25px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#navBubble1 {
+    height: 30px;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.04s;
+}
+#navBubble2 {
+    height: 20px;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s;
+}
+
+.rotate-up {
+    transform: rotate(180deg);
+}
+
+.nav-item .material-icons { font-size: 24px; margin-bottom: 2px; }
+.nav-item span { font-size: 11px; font-weight: bold; }
+
+/* Full Screen Login Overlay */
+#loginSection {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.login-card { width: 100%; max-width: 320px; text-align: center; }
+.app-logo {
+    width: 75px; height: 75px; background: white; border-radius: 20px;
+    margin: 0 auto 20px auto; display: flex; align-items: center;
+    justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+input {
+    width: 100%; padding: 15px; border: 1px solid #eee; border-radius: 14px;
+    font-size: 16px; background: white; margin-bottom: 20px; text-align: center;
+}
+
+button {
+    width: 100%; padding: 15px; background: var(--primary); color: white;
+    border: none; border-radius: 14px; font-size: 16px; font-weight: bold;
+    box-shadow: 0 4px 10px rgba(12, 86, 205, 0.2);
+}
+
+/* App Components */
+.card {
+    background: #fdfdfd; border-radius: 18px; padding: 16px;
+    margin-bottom: 12px; border: 1px solid #f2f2f2;
+}
+
+.card_jayho{
+    border-radius: 18px;
+    border: 1px solid #f2f2f2;
+    margin-bottom: 12px;
+    padding-bottom: 0px !important;
+    padding-top: 17px !important;
+}
+
+.faculty-item {
+    display: flex; align-items: center; padding: 16px;
+    background: #fff; border-radius: 18px; margin-bottom: 10px;
+    border: 1.5px solid #f0f0f0; position: relative;
+}
+.faculty-icon {
+    width: 44px; height: 44px; background: #eff4ff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-right: 14px; color: var(--primary);
+}
+.faculty-icon svg {
+    font-size: 28px;
+}
+
+.faculty-info { flex: 1; cursor: pointer; }
+.faculty-info strong { display: block; font-size: 17px; margin-bottom: 2px; }
+.faculty-info small { color: #999; font-size: 12px; }
+
+.delete-btn {
+    color: #ff5252;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none !important;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+}
+
+.tab-row {
+    display: flex; background: #f0f0f0; padding: 4px;
+    border-radius: 14px; margin-bottom: 16px;
+}
+.tab-pill {
+    flex: 1; text-align: center; padding: 9px; font-size: 13px;
+    font-weight: bold; border-radius: 11px; color: #888;
+}
+.tab-pill.active { background: white; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+/* 1. TABLE CONTAINER: Fix height, Scrollable, NO SCROLLBAR */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: calc(100dvh - 260px);
+    border: 1px solid #eee;
+    border-radius: 14px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.table-container::-webkit-scrollbar {
+    display: none;
+}
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; }
+
+th, td {
+    padding: 12px 8px;
+    font-size: 13px;
+    border-bottom: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
+}
+
+/* 3. STICKY TOP HEADERS: Table ki heading upar fix ho jayegi */
+th {
+    position: sticky;
+    top: 0;
+    background: #f8faff;
+    color: var(--primary);
+    font-weight: bold;
+    z-index: 10;
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+.sticky-col { position: sticky; left: 0; background: white; z-index: 2; min-width: 45px; border-right: 2px solid #e0e0e0; }
+.sticky-col-2 { position: sticky; left: 45px; background: white; z-index: 2; text-align: left; min-width: 110px; border-right: 2px solid #e0e0e0; }
+
+/* 4. TOP-LEFT CORNER FIX: Roll No ka heading 2-way freeze rahega */
+th.sticky-col, th.sticky-col-2 {
+    z-index: 15 !important;
+    background: #eef3ff;
+}
+
+.id-pill {
+    background: #eef3ff; color: var(--primary); padding: 12px;
+    border-radius: 15px; font-weight: bold; display: flex;
+    align-items: center; gap: 10px; margin: 15px 0;
+}
+.outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); box-shadow: none; }
+.hidden { display: none !important; }
+
+/* Custom Dropdown / ListPopupWindow style */
+.dropdown-trigger {
+    height: 55px; border-radius: 50px; font-weight: bold; color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--primary); background: #fff; cursor: pointer;
+    width: 100%; transition: background 0.2s;
+}
+.dropdown-trigger:active {
+    background: #f0f4ff;
+}
+
+#dropdownOverlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1500; display: none;
+}
+.dropdown-popup {
+    position: absolute; background: white; border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    z-index: 1501; overflow-y: auto; max-height: 260px; min-width: 200px;
+    animation: popupFade 0.2s ease-out; transform-origin: top center;
+}
+
+/* Custom scrollbar for dropdown */
+.dropdown-popup::-webkit-scrollbar {
+    width: 6px;
+}
+.dropdown-popup::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.dropdown-popup::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+.dropdown-popup::-webkit-scrollbar-thumb:active {
+    background: var(--primary);
+}
+@keyframes popupFade { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.dropdown-item {
+    padding: 16px 20px; font-size: 16px; color: #333; border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s; cursor: pointer;
+}
+.dropdown-item:last-child { border-bottom: none; }
+.dropdown-item:active { background: #f0f4ff; color: var(--primary); }
+
+/* Custom Android-style Dialog */
+#customDialogOverlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; transition: opacity 0.2s;
+}
+.dialog-card {
+    background: white; width: 100%; max-width: 320px;
+    border-radius: 20px; padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    animation: dialogScale 0.2s ease-out;
+}
+@keyframes dialogScale { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.dialog-title { font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--text-primary); }
+.dialog-message { font-size: 16px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 24px; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.dialog-btn {
+    width: auto; padding: 10px 16px; border-radius: 8px; font-weight: bold; font-size: 14px;
+    cursor: pointer; border: none; background: transparent; color: var(--primary);
+    text-transform: uppercase; box-shadow: none;
+}
+.dialog-btn:active { background: rgba(12, 86, 205, 0.1); }
+.dialog-btn.danger { color: #f44336; background: transparent; }
+.dialog-btn.danger:active { background: rgba(244, 67, 54, 0.1); }
+
+/* 1. Date Box Setup - Asli text ko gayab kar diya (color: transparent) */
+input[type="date"], input[type="month"] {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    position: relative !important;
+    border-radius: 30px !important;
+    height: 50px !important;
+    width: 100% !important;
+    background-color: white !important;
+    border: 1px solid #ddd !important;
+    color: transparent !important; /* ORIGINAL TEXT INVISIBLE */
+    padding: 0 !important;
+}
+
+/* 2. ULTIMATE HACK: Hum apna khud ka text draw karenge jo hamesha Center me rahega */
+input[type="date"]::before, input[type="month"]::before {
+    content: attr(data-date);
+    position: absolute !important;
+    left: 0 !important; right: 0 !important; top: 0 !important; bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--text-primary) !important;
+    font-size: 14px !important;
+    pointer-events: none !important; /* Ispe click nahi hoga */
+}
+
+/* 3. Arrow ko invisible karke box ke upar spread karna */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator {
+    position: absolute !important;
+    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+    width: 100% !important; height: 100% !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+}
+
+/* Faltu buttons hide karein */
+input::-webkit-clear-button, input::-webkit-inner-spin-button {
+    display: none !important;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.dot-small {
+    height: 5px;
+    width: 5px;
+    margin-right: 3px;
+}
+.dot-red { background-color: #D32F2F; }
+.dot-gray { background-color: #ccc; }
