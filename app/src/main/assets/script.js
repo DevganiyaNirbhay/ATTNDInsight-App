@@ -157,13 +157,21 @@ function checkSelectionCount() {
 }
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBzLNT1Rp0Hwy0DEHTrrtn8JnPctYs2PfM",
+   
     authDomain: "attnd-app.firebaseapp.com",
-    databaseURL: "https://attnd-app-default-rtdb.firebaseio.com",
-    projectId: "attnd-app",
-    storageBucket: "attnd-app.firebasestorage.app",
-    messagingSenderId: "1040668596464",
-    appId: "1:1040668596464:web:ef33c2c32defae0b920a35"
+    
+    
+    
+    apiKey: " your value ",
+
+    databaseURL: " your value ",
+    projectId: " your value ",
+    storageBucket: " your value ",
+    messagingSenderId: " your value ",
+    appId: " your value "
+
+    // download attnd from my github : https://github.com/DevganiyaNirbhay/Attendance-App 
+    // and get google-services.jason file from this project and you can see above your value     
 };
 
 firebase.initializeApp(firebaseConfig);
