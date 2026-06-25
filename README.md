@@ -41,7 +41,7 @@ git clone https://github.com/DevganiyaNirbhay/ATTNDInsight-App.git
 
 2. Open the project in Android Studio
 
-3. Edit javascript and enter your firebase api ( instruction are written in script.js in " const firebaseConfig() " )
+3. Edit javascript and enter your firebase API ( instruction are written in script.js in " const firebaseConfig() " )
 4. Sync Gradle and Run
 
 ## Developer
